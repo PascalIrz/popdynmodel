@@ -18,7 +18,7 @@
 #'     thinning (eg n_thin = 50 indicates that the iterations are thinned to one every 50 iterations; default is n_iter/100),
 #'     burn-in period (eg n_burnin = 1000 indicates that the first 1,000 iterations are discarded; default is n_iter/4).
 #'
-#' @importFrom rlang check_required quo_is_null enquo
+#' @importFrom rlang check_required quo_is_null enquo syms
 #' @importFrom nimble nimbleModel configureMCMC buildMCMC compileNimble runMCMC
 #' @importFrom MCMCvis MCMCsummary
 #'
