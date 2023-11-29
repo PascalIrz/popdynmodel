@@ -2,7 +2,7 @@
 % Please edit documentation in R/mod_popdyn.R
 \name{mod_popdyn}
 \alias{mod_popdyn}
-\title{Title}
+\title{Fitting an abundance model}
 \usage{
 mod_popdyn(
   df,
@@ -24,8 +24,42 @@ mod_popdyn(
 )
 }
 \arguments{
-\item{n_burnin}{}
+\item{df}{Dataframe with the data and containing the variables passed as arguments.}
+
+\item{var_id, var_tmp, var_tax, var_cnt, var_wei, var_surf, var_reg, var_guild}{Names of the variables
+of df respectively containing the site ID (compulsory), date/time of observations (compulsory),
+taxon (compulsory), count, weight, sampled area, region and functional guild of the taxon.
+Either `var_cnt` or `var_wei` must be given.}
+
+\item{save_parameters}{Boolean. Should the parameters be saved?}
+
+\item{n_chain, n_iter, n_thin, n_burnin}{Integers. Number of, respectively, MCMC chains (default = 3),
+iterations (default = 10000),
+thinning (eg n_thin = 50 indicates that the iterations are thinned to one every 50 iterations; default is n_iter/100),
+burn-in period (eg n_burnin = 1000 indicates that the first 1,000 iterations are discarded; default is n_iter/4).}
+}
+\value{
+A list with the model output.
 }
 \description{
-Title
+In order to estimate population growth rates from the removal sampling-based model,
+    use the popbay model specifying error=TRUE.
+    Three MCMC chains (n_chain, default value) are considered to check for the convergence
+    of the algorithm to a stationary posterior distribution.
+}
+\examples{
+\dontrun{
+# As fitting a Bayesian model can be time consuming, it is recommended to use few
+#     iterations for testing models. In the example, the model is run with 6,000 iterations
+#    (n_iter), thinned to one draw every 100th iteration (n_thin), after discarding a burn-in
+#    period of 1,000 iterations (n_burnin).
+
+  my_model <- mod_popdyn(df = fauna,
+                         var_id = site_id,
+                         var_tmp = year,
+                         var_cnt = abundance,
+                         n_iter = 6000,
+                         n_thin = 100,
+                         n_burnin = 1000)
+}
 }

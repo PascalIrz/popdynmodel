@@ -15,5 +15,6 @@ get_modparameters <- function(fun = NULL, parameter = NULL) {
   if (!is.null(parameter)) {
     modfunparameters <- filter(modfunparameters, Para %in% parameter)
   }
-  modfunparameters <- select(modfunparameters, -Para, - Function) %>% distinct() %>% print(right = FALSE, row.names = FALSE)
+  modfunparameters <-
+    select(modfunparameters,-Para,-Function) %>% distinct() %>% print(right = FALSE, row.names = FALSE)
 }
