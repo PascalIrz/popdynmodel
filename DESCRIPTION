@@ -14,4 +14,7 @@ Imports:
     MCMCvis,
     nimble,
     rlang
-    
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
